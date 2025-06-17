@@ -24,11 +24,18 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "ci": "npm run build",
-    "format": "prettier --write ."
+    "ci": "npm run build && npm run check-format && npm run check-exports && npm run lint && npm run test",
+    "format": "prettier --write .",
+    "check-format": "prettier --check .",
+    "check-exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
+    "test": "vitest run",
+    "dev": "vitest"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.2",
     "prettier": "^3.5.3",
-    "typescript": "^5.8.3"
-  }
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  },
+  "main": "dist/index.js"
 }
