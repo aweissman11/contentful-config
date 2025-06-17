@@ -1,5 +1,5 @@
 {
-  "name": "contentful-config",
+  "name": "contentful-config-code",
   "version": "1.0.0",
   "description": "A package for managing Contentful configurations",
   "keywords": [
@@ -8,14 +8,14 @@
     "cms",
     "configuration"
   ],
-  "homepage": "https://github.com/aweissman11/contentful-config",
+  "homepage": "https://github.com/aweissman11/contentful-config-code",
   "bugs": {
-    "url": "https://github.com/aweissman11/contentful-config/issues"
+    "url": "https://github.com/aweissman11/contentful-config-code/issues"
   },
   "author": "Aaron Weissman",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aweissman11/contentful-config.git"
+    "url": "git+https://github.com/aweissman11/contentful-config-code.git"
   },
   "files": [
     "dist"
@@ -36,6 +36,13 @@
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
     "@changesets/cli": "^2.29.4",
+    "@eslint/eslintrc": "^3.3.1",
+    "@types/lodash": "^4.17.17",
+    "@types/node": "^24.0.3",
+    "contentful-management": "^11.53.0",
+    "contentful-migration": "^4.28.6",
+    "dotenv": "^16.5.0",
+    "lodash": "^4.17.21",
     "prettier": "^3.5.3",
     "typescript": "^5.8.3",
     "vitest": "^3.2.4"
