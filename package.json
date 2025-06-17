@@ -1,0 +1,34 @@
+{
+  "name": "contentful-config",
+  "version": "1.0.0",
+  "description": "A package for managing Contentful configurations",
+  "keywords": [
+    "typescript",
+    "contentful",
+    "cms",
+    "configuration"
+  ],
+  "homepage": "https://github.com/aweissman11/contentful-config",
+  "bugs": {
+    "url": "https://github.com/aweissman11/contentful-config/issues"
+  },
+  "author": "Aaron Weissman",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aweissman11/contentful-config.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "ci": "npm run build",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3"
+  }
+}
