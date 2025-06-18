@@ -54,6 +54,12 @@ type TCreateOrEditContentTypeFunction = ({
   name: string,
 }) => Promise<FullModel>;
 
+type TSyncOptions = {
+  modelsBasePath?: string;
+};
+
+type TSyncContentfulToLocal = (syncOptions?: TSyncOptions) => Promise<void>;
+
 declare global {
   type EntryEditor = TEntryEditor;
   type ContentField = IContentField;
@@ -61,4 +67,6 @@ declare global {
   type FullModel = TFullModel;
   type AsyncMigrationFunction = TAsyncMigrationFunction;
   type CreateOrEditContentTypeFunction = TCreateOrEditContentTypeFunction;
+  type SyncOptions = TSyncOptions;
+  type SyncContentfulToLocal = TSyncContentfulToLocal;
 }

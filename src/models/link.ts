@@ -40,4 +40,5 @@ export const link: ContentModel = {
       ],
     },
   ],
+  configureEntryEditors: [],
 };

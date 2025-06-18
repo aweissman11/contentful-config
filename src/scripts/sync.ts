@@ -4,7 +4,7 @@ import 'dotenv/config';
 import fs from 'fs';
 import _ from 'lodash';
 import path from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 
 const fieldDefaults = {
   omitted: false,
@@ -20,9 +20,10 @@ const fieldDefaults = {
 // Detect ESM at runtime
 const isESM = typeof import.meta !== 'undefined' && !!import.meta.url;
 
-export const syncContentfulToLocal = async (): Promise<void> => {
+export const syncContentfulToLocal: SyncContentfulToLocal = async ({
+  modelsBasePath,
+} = {}): Promise<void> => {
   console.log('Running sync function...');
-  // Use correct createClient reference for both CJS and ESM
   const createClient = contentfulManagement.createClient;
   const client = createClient(
     {
@@ -61,9 +62,15 @@ export const syncContentfulToLocal = async (): Promise<void> => {
     // get local model from the file system
     let localModel: ContentModel | null = null;
     try {
-      const localFile = require(`../models/${model.sys.id}.ts`);
-      localModel = localFile?.[model.sys.id] ?? {};
+      const localFilePath = path.resolve(
+        modelsBasePath ?? path.join(__dirname, '../models'),
+        `${model.sys.id}.ts`,
+      );
+      // Dynamically import the local model file
+      const localModule = await import(pathToFileURL(localFilePath).href);
+      localModel = localModule?.[model.sys.id] ?? {};
     } catch (error) {
+      console.log('error =>', error);
       console.error(`No local model for ${model.sys.id} found`);
     }
 
@@ -108,10 +115,6 @@ export const syncContentfulToLocal = async (): Promise<void> => {
         .filter(Boolean) as EntryEditor[];
     }
 
-    const isSame = _.isEqual(localModel, parsedModel);
-
-    console.log('isSame =>', isSame);
-
     const mergedModel = _.merge(localModel, parsedModel);
 
     // set this path from the root of the project
@@ -142,4 +145,14 @@ export const syncContentfulToLocal = async (): Promise<void> => {
     ({ sys }) => sys.id,
   )}];\n`;
   fs.writeFileSync(filePath, fileContent, 'utf8');
+
+  console.log('\x1b[35m', '=======================================');
+  console.log('\x1b[32m', '+++++++++++++++++++++++++++++++++++++++');
+  console.log('\x1b[34m', 'Sync completed successfully!');
+  console.log(
+    '\x1b[34m',
+    '**You should probably format and commit your code now.**',
+  );
+  console.log('\x1b[32m', '+++++++++++++++++++++++++++++++++++++++');
+  console.log('\x1b[35m', '=======================================');
 };

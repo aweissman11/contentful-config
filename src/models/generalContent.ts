@@ -21,6 +21,11 @@ export const generalContent: ContentModel = {
       validations: [],
     },
     {
+      id: 'pretext',
+      name: 'Pretext',
+      ...stylesOnlyRichText,
+    },
+    {
       id: 'title',
       name: 'Title',
       ...stylesOnlyRichText,
