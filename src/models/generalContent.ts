@@ -1,5 +1,5 @@
-import { complexRichText } from '@/models/shared/complexRichText.js';
-import { stylesOnlyRichText } from '@/models/shared/stylesOnlyRichText.js';
+import { complexRichText } from './shared/complexRichText.js';
+import { stylesOnlyRichText } from './shared/stylesOnlyRichText.js';
 
 export const generalContent: ContentModel = {
   id: 'generalContent',

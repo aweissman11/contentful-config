@@ -1,4 +1,4 @@
-import { createOrEditContentType, createOrEditField } from '@/index.js';
+import { createOrEditContentType, createOrEditField } from '../index.js';
 import contentfulMigration from 'contentful-migration';
 
 type RunMigrationConfig = contentfulMigration.RunMigrationConfig;
