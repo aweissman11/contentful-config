@@ -1,7 +1,10 @@
 // Export all components from the components directory
-export { syncLocalModelsToContentful as migrate } from './scripts/migrate.js';
-export { syncContentfulToLocal as sync } from './scripts/sync.js';
-export { createOrEditContentType } from './types/utils/createOrEditContentType.js';
-export { createOrEditField } from './types/utils/createOrEditField.js';
-export { contentTypeCheck } from './types/utils/contentTypeCheck.js';
 export * from './types/index.js';
+export { contentTypeCheck } from './utils/contentTypeCheck.js';
+export { createOrEditContentType } from './utils/createOrEditContentType.js';
+export { createOrEditField } from './utils/createOrEditField.js';
+export {
+  runMigrations,
+  syncLocalModelsToContentful,
+} from './scripts/migrate.js';
+export { syncContentfulToLocal } from './scripts/sync.js';

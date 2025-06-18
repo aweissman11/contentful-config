@@ -1,78 +1,84 @@
 import type { ContentModel } from "@/types";
 
-export const landingPage: ContentModel = {
-  id: "landingPage",
-  name: "Landing Page",
-  description: "Content type for landing pages.",
-  displayField: "internalTitle",
-  fields: [
+export const landingPage:ContentModel = {
+  "id": "landingPage",
+  "name": "Landing Page",
+  "description": "Content type for landing pages.",
+  "displayField": "internalTitle",
+  "fields": [
     {
-      id: "internalTitle",
-      name: "Internal Title",
-      type: "Symbol",
-      required: true,
-      validations: [],
-      localized: false,
-      disabled: false,
-      omitted: false,
+      "omitted": false,
+      "disabled": false,
+      "required": true,
+      "localized": false,
+      "id": "internalTitle",
+      "name": "Internal Title",
+      "type": "Symbol",
+      "validations": []
     },
     {
-      id: "title",
-      name: "Title",
-      type: "RichText",
-      required: false,
-      validations: [
+      "omitted": false,
+      "disabled": false,
+      "required": false,
+      "localized": false,
+      "id": "title",
+      "name": "Title",
+      "type": "RichText",
+      "validations": [
         {
-          enabledNodeTypes: [],
+          "enabledNodeTypes": []
         },
         {
-          enabledMarks: ["bold", "italic", "underline"],
-        },
-      ],
-      localized: false,
-      disabled: false,
-      omitted: false,
+          "enabledMarks": [
+            "bold",
+            "italic",
+            "underline"
+          ]
+        }
+      ]
     },
     {
-      id: "slug",
-      name: "Slug",
-      type: "Symbol",
-      required: true,
-      validations: [
+      "omitted": false,
+      "disabled": false,
+      "required": true,
+      "localized": false,
+      "id": "slug",
+      "name": "Slug",
+      "type": "Symbol",
+      "validations": [
         {
-          unique: true,
-          message: "This slug must be unique across the site.",
-        },
-      ],
-      localized: false,
-      disabled: false,
-      omitted: false,
+          "unique": true,
+          "message": "This slug must be unique across the site."
+        }
+      ]
     },
     {
-      id: "hero",
-      name: "Hero",
-      type: "Link",
-      linkType: "Entry",
-      required: false,
-      validations: [
+      "omitted": false,
+      "disabled": false,
+      "required": false,
+      "localized": false,
+      "linkType": "Entry",
+      "id": "hero",
+      "name": "Hero",
+      "type": "Link",
+      "validations": [
         {
-          linkContentType: ["simpleHero"],
-        },
-      ],
-      localized: false,
-      disabled: false,
-      omitted: false,
+          "linkContentType": [
+            "simpleHero"
+          ]
+        }
+      ]
     },
     {
-      id: "modules",
-      name: "Modules",
-      type: "Array",
-      required: false,
-      validations: [],
-      localized: false,
-      disabled: false,
-      omitted: false,
-    },
+      "omitted": false,
+      "disabled": false,
+      "required": false,
+      "localized": false,
+      "id": "modules",
+      "name": "Modules",
+      "type": "Array",
+      "validations": []
+    }
   ],
-  configureEntryEditors: [],
+  "configureEntryEditors": []
 };

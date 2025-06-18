@@ -7,37 +7,43 @@ export const simpleHero:ContentModel = {
   "displayField": "internalTitle",
   "fields": [
     {
+      "omitted": false,
+      "disabled": false,
+      "required": true,
+      "localized": false,
       "id": "internalTitle",
       "name": "Internal Title",
       "type": "Symbol",
-      "required": true,
-      "validations": [],
-      "localized": false,
-      "disabled": false,
-      "omitted": false
+      "validations": []
     },
     {
+      "omitted": false,
+      "disabled": false,
+      "required": true,
+      "localized": false,
+      "linkType": "Entry",
       "id": "content",
       "name": "Content",
       "type": "Link",
-      "linkType": "Entry",
-      "required": true,
       "validations": [
         {
           "linkContentType": [
             "generalContent"
           ]
         }
-      ],
-      "localized": false,
-      "disabled": false,
-      "omitted": false
+      ]
     },
     {
+      "omitted": false,
+      "disabled": false,
+      "required": true,
+      "localized": false,
+      "defaultValue": {
+        "en-US": "simple"
+      },
       "id": "heroType",
       "name": "Hero Type",
       "type": "Symbol",
-      "required": true,
       "validations": [
         {
           "in": [
@@ -45,13 +51,7 @@ export const simpleHero:ContentModel = {
             "complex"
           ]
         }
-      ],
-      "localized": false,
-      "disabled": false,
-      "omitted": false,
-      "defaultValue": {
-        "en-US": "simple"
-      }
+      ]
     }
   ],
   "configureEntryEditors": [

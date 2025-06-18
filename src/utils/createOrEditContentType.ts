@@ -1,4 +1,3 @@
-import type { CreateOrEditContentTypeFunction } from '../index.js';
 import { contentTypeCheck } from './contentTypeCheck.js';
 
 export const createOrEditContentType: CreateOrEditContentTypeFunction = async ({

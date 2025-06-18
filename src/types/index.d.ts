@@ -6,7 +6,7 @@ import type {
   IFieldOptions,
 } from 'contentful-migration';
 
-type EntryEditor =
+type TEntryEditor =
   | {
       widgetNamespace: 'builtin';
       widgetId: BuiltinEditor;
@@ -18,12 +18,12 @@ type EntryEditor =
       settings?: IEditorInterfaceOptions;
     };
 
-interface ContentField extends IFieldOptions {
+interface IContentField extends IFieldOptions {
   id: string;
   name: string;
 }
 
-type ContentModel = {
+type TContentModel = {
   id: string;
   name: string;
   description: string;
@@ -32,24 +32,33 @@ type ContentModel = {
   configureEntryEditors?: EntryEditor[];
 };
 
-type FullModel = {
+type TFullModel = {
   contentType: ContentType;
-  contentModel?: ContentModel | null;
+  contentModel?: TContentModel | null;
 };
 
-type AsyncMigrationFunction = ({
+type TAsyncMigrationFunction = ({
   models,
   migration,
   context,
 }: {
-  models?: Array<ContentModel>;
+  models?: Array<TContentModel>;
   migration: Migration;
   context: Parameters<MigrationFunction>[1] & MakeRequest;
 }) => Promise<void>;
 
-type CreateOrEditContentTypeFunction = ({
+type TCreateOrEditContentTypeFunction = ({
   migration: Migration,
   makeRequest: MakeRequest,
   contentTypeId: string,
   name: string,
 }) => Promise<FullModel>;
+
+declare global {
+  type EntryEditor = TEntryEditor;
+  type ContentField = IContentField;
+  type ContentModel = TContentModel;
+  type FullModel = TFullModel;
+  type AsyncMigrationFunction = TAsyncMigrationFunction;
+  type CreateOrEditContentTypeFunction = TCreateOrEditContentTypeFunction;
+}

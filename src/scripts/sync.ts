@@ -1,13 +1,10 @@
-import { createClient } from 'contentful-management';
+// Fix import for contentful-management to support both CJS and ESM
+import contentfulManagement from 'contentful-management';
 import 'dotenv/config';
 import fs from 'fs';
-import { isEqual, merge } from 'lodash';
+import _ from 'lodash';
 import path from 'path';
-import type {
-  ContentField,
-  ContentModel,
-  EntryEditor,
-} from '../types/index.js';
+import { fileURLToPath } from 'url';
 
 const fieldDefaults = {
   omitted: false,
@@ -22,6 +19,8 @@ const fieldDefaults = {
 
 export const syncContentfulToLocal = async (): Promise<void> => {
   console.log('Running sync function...');
+  // Use correct createClient reference for both CJS and ESM
+  const createClient = contentfulManagement.createClient;
   const client = createClient(
     {
       accessToken: process.env.CONTENTFUL_MANAGEMENT_TOKEN!,
@@ -45,6 +44,10 @@ export const syncContentfulToLocal = async (): Promise<void> => {
     })
   ).items;
 
+  // Patch: Define __dirname for ESM compatibility
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
+
   for (const model of contentModels) {
     console.log(`Processing model: ${model.sys.id}`);
 
@@ -55,7 +58,7 @@ export const syncContentfulToLocal = async (): Promise<void> => {
     // get local model from the file system
     let localModel: ContentModel | null = null;
     try {
-      const localFile = require(`@/models/${model.sys.id}.ts`);
+      const localFile = require(`../models/${model.sys.id}.ts`);
       localModel = localFile?.[model.sys.id] ?? {};
     } catch (error) {
       console.error(`No local model for ${model.sys.id} found`);
@@ -99,22 +102,22 @@ export const syncContentfulToLocal = async (): Promise<void> => {
         .filter(Boolean) as EntryEditor[],
     };
 
-    const isSame = isEqual(localModel, parsedModel);
+    const isSame = _.isEqual(localModel, parsedModel);
 
     console.log('isSame =>', isSame);
 
-    const mergedModel = merge(localModel, parsedModel);
+    const mergedModel = _.merge(localModel, parsedModel);
 
     // set this path from the root of the project
-    const filePath = path.join(__dirname, `../src/models/${model.sys.id}.ts`);
+    const filePath = path.join(__dirname, `../models/${model.sys.id}.ts`);
     if (!fs.existsSync(path.dirname(filePath))) {
       fs.mkdirSync(path.dirname(filePath), { recursive: true });
     }
 
-    // const fileContent = `import type { ContentModel } from "@/types";\n\nexport const ${
-    //   model.sys.id
-    // }:ContentModel = ${JSON.stringify(mergedModel, null, 2)};\n`;
-    // fs.writeFileSync(filePath, fileContent, "utf8");
+    const fileContent = `import type { ContentModel } from "@/types";\n\nexport const ${
+      model.sys.id
+    }:ContentModel = ${JSON.stringify(mergedModel, null, 2)};\n`;
+    fs.writeFileSync(filePath, fileContent, 'utf8');
     console.log(`Model for ${model.sys.id} written to ${filePath}`);
   }
 

@@ -1,8 +1,13 @@
-import type { ContentModel } from "@/types";
-import { generalContent } from "@/models/generalContent";
-import { seo } from "@/models/seo";
-import { landingPage } from "@/models/landingPage";
-import { simpleHero } from "@/models/simpleHero";
-import { link } from "@/models/link";
+import { generalContent } from './generalContent.js';
+import { landingPage } from './landingPage.js';
+import { seo } from './seo.js';
+import { simpleHero } from './simpleHero.js';
+import { link } from './link.js';
 
-export const models:ContentModel[] = [generalContent,seo,landingPage,simpleHero,link];
+export const models: ContentModel[] = [
+  generalContent,
+  seo,
+  landingPage,
+  simpleHero,
+  link,
+];

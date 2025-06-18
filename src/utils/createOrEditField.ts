@@ -1,5 +1,4 @@
 import type { Field, FieldType } from 'contentful-migration';
-import type { ContentField, FullModel } from '../index.js';
 
 export const createOrEditField = async ({
   parent,

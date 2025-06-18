@@ -7,41 +7,41 @@ export const link:ContentModel = {
   "displayField": null,
   "fields": [
     {
+      "omitted": false,
+      "disabled": false,
+      "required": true,
+      "localized": false,
       "id": "internalTitle",
       "name": "Internal Title",
       "type": "Symbol",
-      "required": true,
-      "validations": [],
-      "localized": false,
-      "disabled": false,
-      "omitted": false
+      "validations": []
     },
     {
+      "omitted": false,
+      "disabled": false,
+      "required": false,
+      "localized": false,
       "id": "text",
       "name": "Text",
       "type": "Symbol",
-      "required": false,
-      "validations": [],
-      "localized": false,
-      "disabled": false,
-      "omitted": false
+      "validations": []
     },
     {
+      "omitted": false,
+      "disabled": false,
+      "required": true,
+      "localized": false,
+      "linkType": "Entry",
       "id": "ref",
       "name": "Reference",
       "type": "Link",
-      "linkType": "Entry",
-      "required": true,
       "validations": [
         {
           "linkContentType": [
             "landingPage"
           ]
         }
-      ],
-      "localized": false,
-      "disabled": false,
-      "omitted": false
+      ]
     }
   ],
   "configureEntryEditors": []

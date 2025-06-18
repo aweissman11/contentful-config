@@ -1,10 +1,8 @@
+import { createOrEditContentType, createOrEditField } from '@/index.js';
 import {
   runMigration,
   type RunMigrationConfig,
 } from 'contentful-migration/index.js';
-import type { AsyncMigrationFunction, ContentModel } from '../types/index.js';
-import { createOrEditContentType } from '../types/utils/createOrEditContentType.js';
-import { createOrEditField } from '../types/utils/createOrEditField.js';
 
 export const runMigrations = async ({
   options,

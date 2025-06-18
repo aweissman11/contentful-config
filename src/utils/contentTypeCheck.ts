@@ -1,5 +1,4 @@
 import type { MakeRequest } from 'contentful-migration';
-import type { ContentModel } from '../index.js';
 
 export const contentTypeCheck = async ({
   makeRequest,

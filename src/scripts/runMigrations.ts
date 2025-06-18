@@ -2,7 +2,6 @@ import { type RunMigrationConfig } from 'contentful-migration';
 import 'dotenv/config';
 import { models } from '../models/index.js';
 import { runMigrations } from './migrate.js';
-import type { AsyncMigrationFunction } from '../types/index.js';
 
 const options: RunMigrationConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID!,
