@@ -17,6 +17,9 @@ const fieldDefaults = {
   defaultValue: undefined,
 };
 
+// Detect ESM at runtime
+const isESM = typeof import.meta !== 'undefined' && !!import.meta.url;
+
 export const syncContentfulToLocal = async (): Promise<void> => {
   console.log('Running sync function...');
   // Use correct createClient reference for both CJS and ESM
@@ -114,7 +117,7 @@ export const syncContentfulToLocal = async (): Promise<void> => {
       fs.mkdirSync(path.dirname(filePath), { recursive: true });
     }
 
-    const fileContent = `import type { ContentModel } from "@/types";\n\nexport const ${
+    const fileContent = `export const ${
       model.sys.id
     }:ContentModel = ${JSON.stringify(mergedModel, null, 2)};\n`;
     fs.writeFileSync(filePath, fileContent, 'utf8');
@@ -123,12 +126,15 @@ export const syncContentfulToLocal = async (): Promise<void> => {
 
   console.log('All models processed successfully.');
 
-  const filePath = path.join(__dirname, `../src/models/index.ts`);
+  const filePath = path.join(__dirname, `../models/index.ts`);
   if (!fs.existsSync(path.dirname(filePath))) {
     fs.mkdirSync(path.dirname(filePath), { recursive: true });
   }
-  const fileContent = `import type { ContentModel } from "@/types";\n${contentModels
-    .map(({ sys }) => `import { ${sys.id} } from "@/models/${sys.id}";`)
+  const fileContent = `${contentModels
+    .map(
+      ({ sys }) =>
+        `import { ${sys.id} } from "./${sys.id}${isESM ? '.js' : ''}";`,
+    )
     .join('\n')}\n\nexport const models:ContentModel[] = [${contentModels.map(
     ({ sys }) => sys.id,
   )}];\n`;

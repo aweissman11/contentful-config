@@ -1,14 +1,14 @@
-import type { IFieldOptions } from "contentful-migration";
+import type { IFieldOptions } from 'contentful-migration';
 
 export const stylesOnlyRichText: IFieldOptions = {
-  type: "RichText",
+  type: 'RichText',
   required: false,
   validations: [
     {
       enabledNodeTypes: [],
     },
     {
-      enabledMarks: ["bold", "italic", "underline"],
+      enabledMarks: ['bold', 'italic', 'underline'],
     },
   ],
   localized: false,
