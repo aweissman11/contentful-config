@@ -9,7 +9,7 @@ export const runMigrations = async ({
   models,
 }: {
   options: RunMigrationConfig;
-  migrationCallback: AsyncMigrationFunction;
+  migrationCallback?: AsyncMigrationFunction;
   models?: ContentModel[];
 }) => {
   await contentfulMigration.runMigration({
@@ -19,7 +19,7 @@ export const runMigrations = async ({
         await syncLocalModelsToContentful({ models, migration, context });
       }
 
-      migrationCallback({ models, migration, context });
+      migrationCallback?.({ models, migration, context });
     },
   });
 };
