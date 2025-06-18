@@ -1,8 +1,7 @@
 import { createOrEditContentType, createOrEditField } from '@/index.js';
-import {
-  runMigration,
-  type RunMigrationConfig,
-} from 'contentful-migration/index.js';
+import contentfulMigration from 'contentful-migration';
+
+type RunMigrationConfig = contentfulMigration.RunMigrationConfig;
 
 export const runMigrations = async ({
   options,
@@ -13,7 +12,7 @@ export const runMigrations = async ({
   migrationCallback: AsyncMigrationFunction;
   models?: ContentModel[];
 }) => {
-  await runMigration({
+  await contentfulMigration.runMigration({
     ...options,
     migrationFunction: async (migration, context) => {
       if (models) {

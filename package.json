@@ -32,7 +32,8 @@
     "dev": "vitest",
     "local-release": "changeset version && changeset publish",
     "prepublishOnly": "npm run ci",
-    "sync": "tsx ./src/scripts/runSync.ts"
+    "sync": "tsx ./src/scripts/runSync.ts",
+    "migrate": "tsx ./src/scripts/runMigrations.ts"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
