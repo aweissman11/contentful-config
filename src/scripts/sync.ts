@@ -98,7 +98,10 @@ export const syncContentfulToLocal: SyncContentfulToLocal = async ({
         .filter(Boolean) as ContentField[],
     };
 
-    if (editorLayout?.controls?.length) {
+    if (
+      editorLayout?.controls?.length &&
+      editorLayout.controls.some((c) => c.widgetId)
+    ) {
       parsedModel.configureEntryEditors = editorLayout.controls
         ?.map((control) => {
           if (!control.widgetId) return null;
