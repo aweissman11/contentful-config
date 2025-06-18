@@ -89,7 +89,10 @@ export const syncContentfulToLocal = async (): Promise<void> => {
           defaultValue: field.defaultValue,
         }))
         .filter(Boolean) as ContentField[],
-      configureEntryEditors: editorLayout?.controls
+    };
+
+    if (editorLayout?.controls?.length) {
+      parsedModel.configureEntryEditors = editorLayout.controls
         ?.map((control) => {
           if (!control.widgetId) return null;
 
@@ -102,8 +105,8 @@ export const syncContentfulToLocal = async (): Promise<void> => {
             },
           };
         })
-        .filter(Boolean) as EntryEditor[],
-    };
+        .filter(Boolean) as EntryEditor[];
+    }
 
     const isSame = _.isEqual(localModel, parsedModel);
 

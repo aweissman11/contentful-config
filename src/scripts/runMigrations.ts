@@ -1,7 +1,7 @@
 import contentfulMigration from 'contentful-migration';
 import 'dotenv/config';
-import { models } from '../models/index.js';
 import { runMigrations } from './migrate.js';
+import { models } from '../models/index.js';
 
 type RunMigrationConfig = contentfulMigration.RunMigrationConfig;
 

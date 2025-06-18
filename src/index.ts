@@ -1,5 +1,4 @@
 // Export all components from the components directory
-export * from './types/index.js';
 export { contentTypeCheck } from './utils/contentTypeCheck.js';
 export { createOrEditContentType } from './utils/createOrEditContentType.js';
 export { createOrEditField } from './utils/createOrEditField.js';

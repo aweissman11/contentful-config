@@ -1,0 +1,42 @@
+ValidationFailed: {
+  "status": 422,
+  "statusText": "Unprocessable Entity",
+  "message": "Validation error",
+  "details": {
+    "errors": [
+      {
+        "name": "size",
+        "details": "Size must be at least 1 and at most 10",
+        "path": [
+          "editors"
+        ],
+        "value": [],
+        "min": 1,
+        "max": 10
+      }
+    ]
+  },
+  "request": {
+    "url": "https://api.contentful.com/spaces/qvgpmzb06uuu/environments/master/content_types/link/editor_interface",
+    "headers": {
+      "Accept": "application/json, text/plain, */*",
+      "Content-Type": "application/vnd.contentful.management.v1+json",
+      "X-Contentful-User-Agent": "app contentful.migration-cli/4.28.6; feature migration-library; sdk contentful-management-plain.js/11.53.0; platform node.js/v20.17.0; os macOS/v20.17.0;",
+      "CF-Sequence": "fab39ae5-c4ae-472b-8aab-15f4906e76a2",
+      "Authorization": "Bearer ...c2L0c",
+      "X-Contentful-Version": "2",
+      "User-Agent": "axios/1.9.0",
+      "Content-Length": "92",
+      "Accept-Encoding": "gzip, compress, deflate, br"
+    },
+    "method": "put",
+    "payloadData": "{\"controls\":[{\"fieldId\":\"internalTitle\"},{\"fieldId\":\"text\"},{\"fieldId\":\"ref\"}],\"editors\":[]}"
+  },
+  "requestId": "f3f9f62d-3ca0-452a-b73d-386ea99d80bf"
+}
+    at errorHandler (webpack:///node_modules/contentful-sdk-core/dist/error-handler.js:56:1)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async makeRequest (webpack:///adapters/REST/make-request.ts:36:10)
+    at async Task.task (/Users/aaron.weissman/Documents/code/mine/oss/contentful-config-code/node_modules/contentful-migration/src/bin/cli.ts:197:19)
+    at async Task.run (/Users/aaron.weissman/Documents/code/mine/oss/contentful-config-code/node_modules/listr2/dist/lib/task.js:213:21)
+    at async /Users/aaron.weissman/Documents/code/mine/oss/contentful-config-code/node_modules/listr2/node_modules/p-map/index.js:57:22

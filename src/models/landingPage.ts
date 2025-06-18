@@ -72,5 +72,4 @@ export const landingPage: ContentModel = {
       validations: [],
     },
   ],
-  configureEntryEditors: [],
 };
